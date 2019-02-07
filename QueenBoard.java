@@ -1,9 +1,14 @@
 public class QueenBoard {
   private int[][]board;
   public QueenBoard(int size){
-    board = new int[size][size];
+    board = new int[size][size]; //Assuming that the board is always a square.
   }
-  private boolean addQueen(int r, int c)
+  private boolean addQueen(int r, int c) {
+    board[r][c] = -1;
+    for(int i = 0; i < size; i = i + 1) { //Loop for horionzontal 
+      board[r][i] = board[r][i]; //
+    }
+  }
   private boolean removeQueen(int r, int c)
   /**
   *@return The output string formatted as follows:
