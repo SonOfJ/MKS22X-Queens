@@ -4,9 +4,20 @@ public class QueenBoard {
     board = new int[size][size]; //Assuming that the board is always a square.
   }
   private boolean addQueen(int r, int c) {
+    if (board[r][c] = -1 || board[r][c] > 0) { //There is already a queen or the spot is threatened.
+      return false;
+    }
     board[r][c] = -1;
-    for(int i = 0; i < size; i = i + 1) { //Loop for horionzontal 
-      board[r][i] = board[r][i]; //
+    if (c != size - 1) { //Only if the queen is not already at the end.
+      for(int i = 1; i < size - c; i = i + 1) { //Loop for horizontal travel.
+        board[r][c + i] = board[r][c + i] + 1; //Horizontal.
+        if (r - i > -1) { //Upwards diagonal.
+          board[r - 1][c + 1] = board[r - 1][c + 1] + 1;
+        }
+        if (r + i > size - 1) { //Downwards diagonal.
+          board[r + 1][c + 1] = board[r + 1][c + 1] + 1;
+        }
+      }
     }
   }
   private boolean removeQueen(int r, int c)
