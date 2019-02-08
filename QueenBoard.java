@@ -8,7 +8,7 @@ public class QueenBoard {
       return false;
     }
     board[r][c] = -1;
-    if (c != size - 1) { //Only if the queen is not already at the end.
+    if (c != size - 1) { //Only if the queen is not already at the end. Add the death rays.
       for(int i = 1; i < size - c; i = i + 1) { //Loop for horizontal travel.
         board[r][c + i] = board[r][c + i] + 1; //Horizontal.
         if (r - i > -1) { //Upwards diagonal.
