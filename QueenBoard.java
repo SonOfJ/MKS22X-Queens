@@ -20,7 +20,9 @@ public class QueenBoard {
       }
     }
   }
-  private boolean removeQueen(int r, int c)
+  private boolean removeQueen(int r, int c) {
+    board[r][c] = 0;
+  }
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
