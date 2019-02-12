@@ -22,7 +22,7 @@ public class QueenBoard {
     return true;
   }
   private boolean removeQueen(int r, int c) {
-    if (board[r][c] != 1) { //There is no queen.
+    if (board[r][c] != -1) { //There is no queen.
       return false;
     }
     board[r][c] = 0;
@@ -102,10 +102,9 @@ public class QueenBoard {
         if (solver(c + 1)) { //Move to next column.
           return true;
         }
+        removeQueen(r, c); //Erase queen and look for another position.
       }
-      removeQueen(r, c); //Erase queen and look for another position.
     }
-    empty();
     return false;
   }
   /**
@@ -129,7 +128,6 @@ public class QueenBoard {
         removeQueen(r, c); //Erase queen and look for another position.
       }
     }
-    empty();
     return sols; //Return total number of solutions.
   }
 }
