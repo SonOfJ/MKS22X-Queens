@@ -92,7 +92,7 @@ public class QueenBoard {
       if (addQueen(r, c)) { //If queen can be added.
         return solver(c + 1); //Move to next column.
       }
-      removeQueen(r, c);
+      removeQueen(r, c); //Erase queen and look for another position.
     }
     return false;
   }
@@ -114,7 +114,7 @@ public class QueenBoard {
     for(int r = 0; r < size; r = r + 1) {
       if(addQueen(r, c)) {
         sols = sols + counter(c + 1); //Found one solution.
-        removeQueen(r, c);
+        removeQueen(r, c); //Erase queen and look for another position.
       }
     }
     return sols; //Return total number of solutions.
