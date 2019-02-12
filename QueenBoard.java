@@ -75,7 +75,7 @@ public class QueenBoard {
     }
     return true;
   }
-  private void empty() { //Empties the entire board.
+  public void empty() { //Empties the entire board.
     for(int i = 0; i < board.length; i = i + 1) {
       for(int j = 0; j < board.length; j = j + 1) {
         board[i][j] = 0;
