@@ -99,7 +99,9 @@ public class QueenBoard {
     }
     for(int r = 0; r < board.length; r = r + 1) { //Moves down the row for the column.
       if (addQueen(r, c)) { //If queen can be added.
-        return solver(c + 1); //Move to next column.
+        if (solver(c + 1)) { //Move to next column.
+          return true;
+        }
       }
       removeQueen(r, c); //Erase queen and look for another position.
     }
