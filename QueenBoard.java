@@ -14,7 +14,7 @@ public class QueenBoard {
         if (r - i > -1) { //Upwards diagonal.
           board[r - i][c + i] = board[r - i][c + i] + 1; //Death ray.
         }
-        if (r + i > board.length - 1) { //Downwards diagonal.
+        if (r + i < board.length) { //Downwards diagonal.
           board[r + i][c + i] = board[r + i][c + i] + 1; //Death ray.
         }
       }
@@ -32,7 +32,7 @@ public class QueenBoard {
         if (r - i > -1) {
           board[r - i][c + i] = board[r - i][c + i] + 1; //Remove death ray.
         }
-        if (r + i > board.length - 1) {
+        if (r + i < board.length) {
           board[r + i][c + i] = board[r + i][c + i] + 1; //Remove death ray.
         }
       }
