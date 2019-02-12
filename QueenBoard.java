@@ -49,7 +49,20 @@ public class QueenBoard {
   *(pythonic string notation for clarity,
   *excludes the character up to the *)
   */
-  public String toString(){}
+  public String toString() {
+    String display = "";
+    for(int i = 0; i < size; i = i + 1) {
+      for(int j = 0; j < size; j = j + 1) {
+        if (board[i][j] == -1) {
+          display = display + "Q ";
+        } else {
+          display = display + "_ ";
+        }
+      }
+      display = dislay + "\n";
+    }
+    return display;
+  }
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
   *        true when the board is solveable, and leaves the board in a solved state
