@@ -84,7 +84,18 @@ public class QueenBoard {
     }
     return solver(0); //Calls helper function.
   }
-  private
+  private boolean solver(int c) { //Takes the column number as the parameter.
+    if (c == size) { //All the queens have been addded.
+      return true;
+    }
+    for(int r = 0; r < size; r = r + 1) { //Moves down the row for the column.
+      if (addQueen(r, c)) { //If queen can be added.
+        return solver(c + 1); //Move to next column.
+      }
+      removeQueen(r, c)
+    }
+    return false;
+  }  
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
