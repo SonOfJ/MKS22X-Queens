@@ -68,7 +68,19 @@ public class QueenBoard {
   *        true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value
   */
-  public boolean solve(){}
+  private boolean cleanBoard() { //Checks if the board only contains 0s.
+    for(int i = 0; i < size; i = i + 1) {
+      for(int j = 0; j < size; j = j + 1) {
+        if (board[i][j] != 0) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  public boolean solve() {
+
+  }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
