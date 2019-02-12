@@ -95,7 +95,7 @@ public class QueenBoard {
       removeQueen(r, c)
     }
     return false;
-  }  
+  }
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
@@ -104,5 +104,7 @@ public class QueenBoard {
     if (!cleanBoard) {
       throw IllegalStateException("Board is not clean.");
     }
+    return counter(0); //Calls helper function.
   }
+  private int counter
 }
