@@ -4,7 +4,7 @@ public class QueenBoard {
     board = new int[size][size]; //Assuming that the board is always a square.
   }
   private boolean addQueen(int r, int c) {
-    if (board[r][c] = -1 || board[r][c] > 0) { //There is already a queen or the spot is threatened.
+    if (board[r][c] != 0) { //There is already a queen or the spot is threatened.
       return false;
     }
     board[r][c] = -1;
@@ -12,16 +12,30 @@ public class QueenBoard {
       for(int i = 1; i < size - c; i = i + 1) { //Loop for horizontal travel.
         board[r][c + i] = board[r][c + i] + 1; //Horizontal.
         if (r - i > -1) { //Upwards diagonal.
-          board[r - 1][c + 1] = board[r - 1][c + 1] + 1;
+          board[r - i][c + i] = board[r - i][c + i] + 1; //Death ray.
         }
         if (r + i > size - 1) { //Downwards diagonal.
-          board[r + 1][c + 1] = board[r + 1][c + 1] + 1;
+          board[r + i][c + i] = board[r + i][c + i] + 1; //Death ray.
         }
       }
     }
   }
   private boolean removeQueen(int r, int c) {
+    if (board[r][c] != 1) { //There is no queen.
+      return false;
+    }
     board[r][c] = 0;
+    if (c != size - 1) {
+      for(int i = 1; i < size - c; i = i + 1) { //Same setup as the add method.
+        board[r][c + i] = board[r][c + i] + 1;
+        if (r - i > -1) {
+          board[r - i][c + i] = board[r - i][c + i] + 1; //Remove death ray.
+        }
+        if (r + i > size - 1) {
+          board[r + i][c + i] = board[r + i][c + i] + 1; //Remove death ray.
+        }
+      }
+    }
   }
   /**
   *@return The output string formatted as follows:
