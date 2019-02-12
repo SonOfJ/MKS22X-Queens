@@ -65,11 +65,6 @@ public class QueenBoard {
     }
     return display;
   }
-  /**
-  *@return false when the board is not solveable and leaves the board filled with zeros;
-  *        true when the board is solveable, and leaves the board in a solved state
-  *@throws IllegalStateException when the board starts with any non-zero value
-  */
   private boolean cleanBoard() { //Checks if the board only contains 0s.
     for(int i = 0; i < board.length; i = i + 1) {
       for(int j = 0; j < board.length; j = j + 1) {
@@ -80,6 +75,18 @@ public class QueenBoard {
     }
     return true;
   }
+  private void empty() { //Empties the entire board.
+    for(int i = 0; i < board.length; i = i + 1) {
+      for(int j = 0; j < board.length; j = j + 1) {
+        board[i][j] = 0;
+      }
+    }
+  }
+  /**
+  *@return false when the board is not solveable and leaves the board filled with zeros;
+  *        true when the board is solveable, and leaves the board in a solved state
+  *@throws IllegalStateException when the board starts with any non-zero value
+  */
   public boolean solve() {
     if (!cleanBoard()) {
       throw new IllegalStateException("Board is not clean.");
@@ -96,6 +103,7 @@ public class QueenBoard {
       }
       removeQueen(r, c); //Erase queen and look for another position.
     }
+    empty();
     return false;
   }
   /**
@@ -119,6 +127,7 @@ public class QueenBoard {
         removeQueen(r, c); //Erase queen and look for another position.
       }
     }
+    empty();
     return sols; //Return total number of solutions.
   }
 }
