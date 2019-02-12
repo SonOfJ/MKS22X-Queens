@@ -79,11 +79,19 @@ public class QueenBoard {
     return true;
   }
   public boolean solve() {
-
+    if (!cleanBoard) {
+      throw IllegalStateException("Board is not clean.");
+    }
+    return solver(0); //Calls helper function.
   }
+  private
   /**
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value
   */
-  public int countSolutions(){}
+  public int countSolutions() {
+    if (!cleanBoard) {
+      throw IllegalStateException("Board is not clean.");
+    }
+  }
 }
