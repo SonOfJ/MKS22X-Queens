@@ -8,34 +8,36 @@ public class QueenBoard {
       return false;
     }
     board[r][c] = -1;
-    if (c != size - 1) { //Only if the queen is not already at the end. Add the death rays.
-      for(int i = 1; i < size - c; i = i + 1) { //Loop for horizontal travel.
+    if (c != board.length - 1) { //Only if the queen is not already at the end. Add the death rays.
+      for(int i = 1; i < board.length - c; i = i + 1) { //Loop for horizontal travel.
         board[r][c + i] = board[r][c + i] + 1; //Horizontal.
         if (r - i > -1) { //Upwards diagonal.
           board[r - i][c + i] = board[r - i][c + i] + 1; //Death ray.
         }
-        if (r + i > size - 1) { //Downwards diagonal.
+        if (r + i > board.length - 1) { //Downwards diagonal.
           board[r + i][c + i] = board[r + i][c + i] + 1; //Death ray.
         }
       }
     }
+    return true;
   }
   private boolean removeQueen(int r, int c) {
     if (board[r][c] != 1) { //There is no queen.
       return false;
     }
     board[r][c] = 0;
-    if (c != size - 1) {
-      for(int i = 1; i < size - c; i = i + 1) { //Same setup as the add method.
+    if (c != board.length - 1) {
+      for(int i = 1; i < board.length - c; i = i + 1) { //Same setup as the add method.
         board[r][c + i] = board[r][c + i] + 1;
         if (r - i > -1) {
           board[r - i][c + i] = board[r - i][c + i] + 1; //Remove death ray.
         }
-        if (r + i > size - 1) {
+        if (r + i > board.length - 1) {
           board[r + i][c + i] = board[r + i][c + i] + 1; //Remove death ray.
         }
       }
     }
+    return true;
   }
   /**
   *@return The output string formatted as follows:
@@ -51,15 +53,15 @@ public class QueenBoard {
   */
   public String toString() {
     String display = "";
-    for(int i = 0; i < size; i = i + 1) {
-      for(int j = 0; j < size; j = j + 1) {
+    for(int i = 0; i < board.length; i = i + 1) {
+      for(int j = 0; j < board.length; j = j + 1) {
         if (board[i][j] == -1) {
           display = display + "Q ";
         } else {
           display = display + "_ ";
         }
       }
-      display = dislay + "\n";
+      display = display + "\n";
     }
     return display;
   }
@@ -69,8 +71,8 @@ public class QueenBoard {
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   private boolean cleanBoard() { //Checks if the board only contains 0s.
-    for(int i = 0; i < size; i = i + 1) {
-      for(int j = 0; j < size; j = j + 1) {
+    for(int i = 0; i < board.length; i = i + 1) {
+      for(int j = 0; j < board.length; j = j + 1) {
         if (board[i][j] != 0) {
           return false;
         }
@@ -79,16 +81,16 @@ public class QueenBoard {
     return true;
   }
   public boolean solve() {
-    if (!cleanBoard) {
-      throw IllegalStateException("Board is not clean.");
+    if (!cleanBoard()) {
+      throw new IllegalStateException("Board is not clean.");
     }
     return solver(0); //Calls helper function.
   }
   private boolean solver(int c) { //Takes the column number as the parameter.
-    if (c == size) { //All the queens have been addded.
+    if (c == board.length) { //All the queens have been addded.
       return true;
     }
-    for(int r = 0; r < size; r = r + 1) { //Moves down the row for the column.
+    for(int r = 0; r < board.length; r = r + 1) { //Moves down the row for the column.
       if (addQueen(r, c)) { //If queen can be added.
         return solver(c + 1); //Move to next column.
       }
@@ -101,17 +103,17 @@ public class QueenBoard {
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions() {
-    if (!cleanBoard) {
-      throw IllegalStateException("Board is not clean.");
+    if (!cleanBoard()) {
+      throw new IllegalStateException("Board is not clean.");
     }
     return counter(0); //Calls helper function.
   }
   private int counter(int c) { //Somwhat similar to solver.
-    if (c == size) { //Instead of returning true, just add 1 to the total number of solutions.
+    if (c == board.length) { //Instead of returning true, just add 1 to the total number of solutions.
       return 1;
     }
     int sols = 0; //Number of solutions.
-    for(int r = 0; r < size; r = r + 1) {
+    for(int r = 0; r < board.length; r = r + 1) {
       if(addQueen(r, c)) {
         sols = sols + counter(c + 1); //Found one solution.
         removeQueen(r, c); //Erase queen and look for another position.
