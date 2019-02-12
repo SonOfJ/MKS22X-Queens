@@ -28,12 +28,12 @@ public class QueenBoard {
     board[r][c] = 0;
     if (c != board.length - 1) {
       for(int i = 1; i < board.length - c; i = i + 1) { //Same setup as the add method.
-        board[r][c + i] = board[r][c + i] + 1;
+        board[r][c + i] = board[r][c + i] - 1;
         if (r - i > -1) {
-          board[r - i][c + i] = board[r - i][c + i] + 1; //Remove death ray.
+          board[r - i][c + i] = board[r - i][c + i] - 1; //Remove death ray.
         }
         if (r + i < board.length) {
-          board[r + i][c + i] = board[r + i][c + i] + 1; //Remove death ray.
+          board[r + i][c + i] = board[r + i][c + i] - 1; //Remove death ray.
         }
       }
     }
